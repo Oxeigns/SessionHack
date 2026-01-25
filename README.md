@@ -46,7 +46,7 @@ Session Controller is a modular Telegram bot that helps you inspect and manage T
 
 ### 🚀 One-click: Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/CertifiedCoders/SessionHack)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/oxeigns/SessionHack)
 
 > Ensure your repository includes a valid `Procfile` or `heroku.yml` and the required environment variables in the Heroku dashboard.
 
