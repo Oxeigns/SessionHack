@@ -29,6 +29,14 @@ def _identifier_field_names() -> Iterable[str]:
     annotations = getattr(Identifier, "__annotations__", None)
     if annotations:
         return annotations.keys()
+    annotate_func = getattr(Identifier, "__annotate_func__", None)
+    if annotate_func:
+        try:
+            annotations = annotate_func()
+        except TypeError:
+            annotations = annotate_func
+        if isinstance(annotations, dict):
+            return annotations.keys()
     return ()
 
 
@@ -61,8 +69,10 @@ def _identifier_count_populated(self: Identifier) -> int:
 
 
 if not getattr(Identifier, "__annotations__", None):
-    Identifier.matches = _identifier_matches
-    Identifier.count_populated = _identifier_count_populated
+    Identifier.__annotations__ = {}
+
+Identifier.matches = _identifier_matches
+Identifier.count_populated = _identifier_count_populated
 
 # === Pyrogram Client ===
 app = Client(
