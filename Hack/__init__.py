@@ -7,6 +7,7 @@ from pyrogram import Client
 from rich.console import Console
 from rich.table import Table
 from pyromod import listen
+from pyromod.types.identifier import Identifier
 
 API_ID: int = Config.API_ID
 API_HASH: str = Config.API_HASH
@@ -21,6 +22,11 @@ logging.basicConfig(
     handlers=[logging.StreamHandler()]
 )
 logger = logging.getLogger("HackBot")
+
+# Work around Python 3.14 removing instance-level __annotations__ on Identifier.
+# Pyromod expects __annotations__ to exist when matching callback identifiers.
+if not hasattr(Identifier, "__annotations__"):
+    Identifier.__annotations__ = {}
 
 # === Pyrogram Client ===
 app = Client(
